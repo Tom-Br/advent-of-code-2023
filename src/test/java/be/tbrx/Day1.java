@@ -3,10 +3,23 @@ package be.tbrx;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class AdventOfCodeTest {
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class Day1 {
 
     @Test
-    void day1() {
+    void test() {
+        String calibrationInpuit = """
+                two1nine
+                eightwothree
+                abcone2threexyz
+                xtwone3four
+                4nineeightseven2
+                zoneight234
+                7pqrstsixteen
+                """;
         String input = """
                 29lzrxseven
                 9nnqljsixkzphvtmtr
@@ -1014,17 +1027,44 @@ public class AdventOfCodeTest {
 
         int total = 0;
         for (String line : lines) {
-            char[] charArray = line.toCharArray();
-            String digitString = "";
-            for (char c : charArray) {
-                if (Character.isDigit(c)) {
-                    digitString += c;
-                }
-            }
-            String firstDigit = digitString.substring(0, 1);
-            String lastDigit = digitString.substring(digitString.length() - 1);
+            String digitLine = preprocessLine(line);
+            String firstDigit = digitLine.substring(0, 1);
+            String lastDigit = digitLine.substring(digitLine.length() - 1);
             total += Integer.parseInt(firstDigit + lastDigit);
         }
-        Assertions.assertThat(total).isEqualTo(55834);
+        Assertions.assertThat(total).isEqualTo(53221);
+    }
+
+    private String preprocessLine(String line) {
+        StringBuilder output = new StringBuilder();
+
+        Pattern pattern = Pattern.compile("(?=(one|two|three|four|five|six|seven|eight|nine))|(\\d)", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(line);
+
+        while (matcher.find()) {
+            if (matcher.group(1) != null) {
+                output.append(digitReplacer(matcher.group(1)));
+            } else if (matcher.group(2) != null) {
+                output.append(matcher.group(2));
+            } else {
+                System.out.println("No match found");
+            }
+        }
+        return output.toString();
+    }
+
+    private String digitReplacer(String stringDigit) {
+        Map<String, Integer> stringIntegerMap = Map.ofEntries(
+                Map.entry("one", 1),
+                Map.entry("two", 2),
+                Map.entry("three", 3),
+                Map.entry("four", 4),
+                Map.entry("five", 5),
+                Map.entry("six", 6),
+                Map.entry("seven", 7),
+                Map.entry("eight", 8),
+                Map.entry("nine", 9)
+        );
+        return stringIntegerMap.get(stringDigit).toString();
     }
 }
