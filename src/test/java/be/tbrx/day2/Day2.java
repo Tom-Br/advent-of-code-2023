@@ -1,4 +1,4 @@
-package be.tbrx;
+package be.tbrx.day2;
 
 import be.tbrx.day2.Game;
 import org.assertj.core.api.Assertions;

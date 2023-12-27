@@ -1,4 +1,4 @@
-package be.tbrx;
+package be.tbrx.day1;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
