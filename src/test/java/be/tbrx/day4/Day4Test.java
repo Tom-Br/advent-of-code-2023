@@ -233,6 +233,6 @@ public class Day4Test {
         int totalScratchCards = Day4.calculateTotalScratchCards(input);
 
         Assertions.assertThat(sumOfAllCardPoints).isEqualTo(20855);
-        Assertions.assertThat(totalScratchCards).isEqualTo(20855);
+        Assertions.assertThat(totalScratchCards).isEqualTo(5489600);
     }
 }
