@@ -17,8 +17,10 @@ public class Day4Test {
                 """;
 
         int sumOfAllCardPoints  = Day4.sumOfAllCardValues(input);
+        int totalScratchCards = Day4.calculateTotalScratchCards(input);
 
         Assertions.assertThat(sumOfAllCardPoints).isEqualTo(13);
+        Assertions.assertThat(totalScratchCards).isEqualTo(30);
     }
 
     @Test
@@ -228,7 +230,9 @@ public class Day4Test {
                 """;
 
         int sumOfAllCardPoints  = Day4.sumOfAllCardValues(input);
+        int totalScratchCards = Day4.calculateTotalScratchCards(input);
 
         Assertions.assertThat(sumOfAllCardPoints).isEqualTo(20855);
+        Assertions.assertThat(totalScratchCards).isEqualTo(20855);
     }
 }

@@ -65,4 +65,9 @@ public class Card {
 
 
     }
+
+    public Integer totalWinningNumbers() {
+        List<Integer> numbersMatchingWinningNumber = numbers.stream().filter(winningNumbers::contains).toList();
+        return numbersMatchingWinningNumber.size();
+    }
 }
